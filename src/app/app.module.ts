@@ -10,6 +10,9 @@ import { AboutComponent } from './about/about.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { AddComponent } from './add/add.component';
 import { NotFoundComponent } from './not-found.component';
+import { PostsComponent } from './home/posts/posts.component';
+import { PostsItemComponent } from './home/posts/posts-item/posts-item.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,11 +23,14 @@ import { NotFoundComponent } from './not-found.component';
     ContactsComponent,
     AddComponent,
     NotFoundComponent,
+    PostsComponent,
+    PostsItemComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
