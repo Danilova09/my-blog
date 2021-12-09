@@ -13,6 +13,7 @@ import { NotFoundComponent } from './not-found.component';
 import { PostsComponent } from './home/posts/posts.component';
 import { PostsItemComponent } from './home/posts/posts-item/posts-item.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReadMoreComponent } from './read-more/read-more.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     NotFoundComponent,
     PostsComponent,
     PostsItemComponent,
+    ReadMoreComponent,
   ],
   imports: [
     BrowserModule,
