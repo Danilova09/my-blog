@@ -20,11 +20,12 @@ export class PostsComponent implements OnInit {
       .pipe(map(result => {
         return Object.keys(result).map(id => {
           const postData = result[id];
-          return new Post(postData.id, postData.title, postData.description, postData.date);
+          return new Post(id, postData.title, postData.description, postData.date);
         });
       }))
       .subscribe(posts => {
         this.posts = posts;
+        console.log(this.posts);
       })
   }
 }
