@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../shared/post.model';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { PostsService } from '../../shared/posts.service';
 
 @Component({
   selector: 'app-posts',
@@ -12,20 +11,15 @@ export class PostsComponent implements OnInit {
   posts: Post[] = [];
 
   constructor(
-    private http: HttpClient,
+    private postsService: PostsService,
   ) { }
 
   ngOnInit(): void {
-    this.http.get<{ [id: string]: Post }>('https://myblog-f8665-default-rtdb.firebaseio.com/posts.json')
-      .pipe(map(result => {
-        return Object.keys(result).map(id => {
-          const postData = result[id];
-          return new Post(id, postData.title, postData.description, postData.date);
-        });
-      }))
-      .subscribe(posts => {
-        this.posts = posts;
-        console.log(this.posts);
-      })
+    this.posts = this.postsService.getAllPosts();
+    this.postsService.postsChange.subscribe((posts: Post[]) => {
+      this.posts = posts;
+      console.log(this.posts);
+    })
   }
+
 }

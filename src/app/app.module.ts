@@ -14,6 +14,7 @@ import { PostsComponent } from './home/posts/posts.component';
 import { PostsItemComponent } from './home/posts/posts-item/posts-item.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReadMoreComponent } from './read-more/read-more.component';
+import { PostsService } from './shared/posts.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { ReadMoreComponent } from './read-more/read-more.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

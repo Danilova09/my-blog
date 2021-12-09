@@ -1,10 +1,10 @@
 <div class="card my-3 mt-5">
   <div class="card-header">
-    Date: 12/9/2021
+    Date: {{ post.date }}
   </div>
   <div class="card-body">
-    <h5 class="card-title">Title</h5>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, perferendis!</p>
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p>{{ post.description }}</p>
     <button class="btn btn-secondary mr-2">edit</button>
     <button class="btn btn-danger">delete</button>
   </div>

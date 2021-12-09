@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Post } from '../shared/post.model';
+import { ActivatedRoute, Params } from '@angular/router';
+import { PostsService } from '../shared/posts.service';
 
 @Component({
   selector: 'app-read-more',
@@ -6,10 +10,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./read-more.component.css']
 })
 export class ReadMoreComponent implements OnInit {
+  post!: Post;
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private postsService: PostsService,
+  ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      const id = this.route.snapshot.params['id'];
+      this.post = this.postsService.getPostDetails(id);
+    })
+    this.postsService.postChange.subscribe((post: Post) => {
+      this.post = post;
+      console.log(this.post);
+    })
   }
 
 }

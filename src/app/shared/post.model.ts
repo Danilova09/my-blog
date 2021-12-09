@@ -1,6 +1,6 @@
 export class Post {
   constructor(
-    public id: string,
+    public id = 'id',
     public title: string,
     public description: string,
     public date: string,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Post } from '../shared/post.model';
+import { PostsService } from '../shared/posts.service';
 
 @Component({
   selector: 'app-add',
@@ -13,6 +15,7 @@ export class AddComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private postsService: PostsService,
   ) { }
 
   ngOnInit(): void {
