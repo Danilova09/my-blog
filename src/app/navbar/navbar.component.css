@@ -1,0 +1,9 @@
+.nav-link:visited,
+.nav-link:link {
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  border-bottom: 2px solid #fff;
+}
