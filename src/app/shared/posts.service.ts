@@ -4,7 +4,7 @@ import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class PostsService  {
+export class PostsService {
   postsChange = new EventEmitter<Post[]>();
   postChange = new EventEmitter<Post>();
   post!: Post;
@@ -21,7 +21,7 @@ export class PostsService  {
   getAllPosts() {
     this.http.get<{ [id: string]: Post }>('https://myblog-f8665-default-rtdb.firebaseio.com/posts.json')
       .pipe(map(result => {
-         return Object.keys(result).map(id => {
+        return Object.keys(result).map(id => {
           const postData = result[id];
           return new Post(id, postData.title, postData.description, postData.date);
         });
@@ -34,12 +34,18 @@ export class PostsService  {
   }
 
   getPostDetails(id: string) {
-    this.http.get<Post>(`https://myblog-f8665-default-rtdb.firebaseio.com/posts/${id}.json ` )
+    this.http.get<Post>(`https://myblog-f8665-default-rtdb.firebaseio.com/posts/${id}.json`)
       .subscribe(result => {
-        console.log(result);
-        this.post = result;
-        this.postChange.emit(result);
+        if(result !== null) {
+          this.post = result;
+          this.postChange.emit(result);
+        }
       });
     return this.post;
+  }
+
+  onDeletePost(id: string) {
+      this.http.delete(`https://myblog-f8665-default-rtdb.firebaseio.com/posts/${id}.json`)
+        .subscribe()
   }
 }

@@ -14,7 +14,6 @@ const routes: Routes = [
       {path: 'posts/add', component: AddComponent},
       {path: 'posts/:id', component: ReadMoreComponent},
     ]},
-  {path: 'posts', component: HomeComponent},
   {path: 'about', component: AboutComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: '**', component: NotFoundComponent},

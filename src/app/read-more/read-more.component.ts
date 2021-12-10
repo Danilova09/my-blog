@@ -11,6 +11,7 @@ import { PostsService } from '../shared/posts.service';
 })
 export class ReadMoreComponent implements OnInit {
   post!: Post;
+  isDeleted = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,9 +25,18 @@ export class ReadMoreComponent implements OnInit {
       this.post = this.postsService.getPostDetails(id);
     })
     this.postsService.postChange.subscribe((post: Post) => {
-      this.post = post;
-      console.log(this.post);
+      if(post !== null) {
+        this.post = post;
+        console.log(this.post);
+      }
     })
   }
 
+  deletePost() {
+    this.route.params.subscribe((params: Params) => {
+      const id = this.route.snapshot.params['id'];
+      this.postsService.onDeletePost(id);
+    })
+    this.isDeleted = true;
+  }
 }
