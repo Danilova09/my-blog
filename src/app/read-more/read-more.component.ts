@@ -42,7 +42,6 @@ export class ReadMoreComponent implements OnInit {
   edit() {
     this.route.params.subscribe((params: Params) => {
       const id = this.route.snapshot.params['id'];
-      this.postsService.editPost(id);
       void this.router.navigate([`posts/:${id}/edit`]);
     })
   }
