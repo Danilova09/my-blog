@@ -13,6 +13,7 @@ const routes: Routes = [
       {path: '', component: PostsComponent},
       {path: 'posts/add', component: AddComponent},
       {path: 'posts/:id', component: ReadMoreComponent},
+      {path: 'posts/:id/edit', component: AddComponent},
     ]},
   {path: 'about', component: AboutComponent},
   {path: 'contacts', component: ContactsComponent},

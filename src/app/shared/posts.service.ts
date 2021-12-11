@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Post } from './post.model';
 import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable()
 export class PostsService {
@@ -44,8 +45,12 @@ export class PostsService {
     return this.post;
   }
 
-  onDeletePost(id: string) {
+  deletePost(id: string) {
       this.http.delete(`https://myblog-f8665-default-rtdb.firebaseio.com/posts/${id}.json`)
         .subscribe()
   }
+
+  editPost(id: string) {
+  }
+
 }

@@ -1,14 +1,11 @@
-<div *ngIf="isDeleted" class="alert alert-danger mt-5">
-  Post {{ post.title }} is deleted!
-</div>
-<div *ngIf="!isDeleted" class="card my-3 mt-5">
+<div class="card my-3 mt-5">
   <div class="card-header">
     Date: {{ post.date }}
   </div>
   <div class="card-body">
     <h5 class="card-title">{{ post.title }}</h5>
     <p>{{ post.description }}</p>
-    <button class="btn btn-secondary mr-2">edit</button>
-    <button class="btn btn-danger" (click)="deletePost()">delete</button>
+    <button class="btn btn-secondary mr-2" (click)="edit()">edit</button>
+    <button class="btn btn-danger" (click)="delete()">delete</button>
   </div>
 </div>

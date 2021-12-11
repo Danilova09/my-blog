@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../shared/post.model';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PostsService } from '../shared/posts.service';
 
 @Component({
@@ -11,12 +11,12 @@ import { PostsService } from '../shared/posts.service';
 })
 export class ReadMoreComponent implements OnInit {
   post!: Post;
-  isDeleted = false;
 
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
     private postsService: PostsService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -27,16 +27,24 @@ export class ReadMoreComponent implements OnInit {
     this.postsService.postChange.subscribe((post: Post) => {
       if(post !== null) {
         this.post = post;
-        console.log(this.post);
       }
     })
   }
 
-  deletePost() {
+  delete() {
     this.route.params.subscribe((params: Params) => {
       const id = this.route.snapshot.params['id'];
-      this.postsService.onDeletePost(id);
+      this.postsService.deletePost(id);
+      void this.router.navigate(['/']);
     })
-    this.isDeleted = true;
   }
+
+  edit() {
+    this.route.params.subscribe((params: Params) => {
+      const id = this.route.snapshot.params['id'];
+      this.postsService.editPost(id);
+      void this.router.navigate([`posts/:${id}/edit`]);
+    })
+  }
+
 }
